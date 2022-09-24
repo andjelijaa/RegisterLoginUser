@@ -2,12 +2,14 @@ package com.example.RegisterLoginUser.Controller;
 
 
 import com.example.RegisterLoginUser.Config.JwtUtils;
+import com.example.RegisterLoginUser.Model.RequestUser;
 import com.example.RegisterLoginUser.Model.User;
 import com.example.RegisterLoginUser.Repository.UserRepository;
 import com.example.RegisterLoginUser.Service.UserService;
 import com.sun.xml.messaging.saaj.packaging.mime.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,7 +44,18 @@ public class UserController {
         return false;
     }
 
+    @PostMapping("/login")
+    public String login(@RequestBody RequestUser requestUser) throws Exception {
 
+        try{
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(requestUser.getUsername(), requestUser.getPassword())
+            );
+        }catch (Exception ex){
+            throw new Exception("invalid username or/and password");
+        }
+        return jwtUtils.generateToken(requestUser.getUsername());
+    }
 
 }
 
