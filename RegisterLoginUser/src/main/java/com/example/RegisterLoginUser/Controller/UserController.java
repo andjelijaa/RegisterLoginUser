@@ -10,10 +10,7 @@ import com.sun.xml.messaging.saaj.packaging.mime.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -30,14 +27,14 @@ public class UserController {
 
     private final UserService userService;
 
-    public UserController(UserService userService){
-        this.userService=userService;
-        }
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @PostMapping("/register")
     public boolean register(@RequestBody User user) throws MessagingException {
         User u = userRepository.findByUsername(user.getUsername());
-        if(u == null){
+        if (u == null) {
             userService.save(user);
             return true;
         }
@@ -47,15 +44,21 @@ public class UserController {
     @PostMapping("/login")
     public String login(@RequestBody RequestUser requestUser) throws Exception {
 
-        try{
+        try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(requestUser.getUsername(), requestUser.getPassword())
             );
-        }catch (Exception ex){
+        } catch (Exception ex) {
             throw new Exception("invalid username or/and password");
         }
         return jwtUtils.generateToken(requestUser.getUsername());
     }
 
-}
+    @GetMapping(value = "/{id}",produces = "application/json")
+    public User getUserDetail(@PathVariable Long id){
+        return userService.findById(id);
+    }
 
+
+
+}

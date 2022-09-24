@@ -5,4 +5,5 @@ import com.example.RegisterLoginUser.Model.User;
 public interface UserService {
     User findByUsername(String username);
     void save(User user);
+    User findById(Long id);
 }

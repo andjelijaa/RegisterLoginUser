@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="91911b46-631a-491c-b23d-09fbf64459bf" name="Default Changelist" comment="" />
+    <list default="true" id="91911b46-631a-491c-b23d-09fbf64459bf" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/RegisterLoginUser/src/main/java/com/example/RegisterLoginUser/Config/JwtUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/RegisterLoginUser/src/main/java/com/example/RegisterLoginUser/Config/JwtUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RegisterLoginUser/src/main/java/com/example/RegisterLoginUser/Controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/RegisterLoginUser/src/main/java/com/example/RegisterLoginUser/Controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RegisterLoginUser/src/main/java/com/example/RegisterLoginUser/Repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/RegisterLoginUser/src/main/java/com/example/RegisterLoginUser/Repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RegisterLoginUser/src/main/java/com/example/RegisterLoginUser/Service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/RegisterLoginUser/src/main/java/com/example/RegisterLoginUser/Service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RegisterLoginUser/src/main/java/com/example/RegisterLoginUser/Service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/RegisterLoginUser/src/main/java/com/example/RegisterLoginUser/Service/UserServiceImpl.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
