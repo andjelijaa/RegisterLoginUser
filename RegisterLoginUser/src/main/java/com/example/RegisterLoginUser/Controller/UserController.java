@@ -1,17 +1,26 @@
 package com.example.RegisterLoginUser.Controller;
 
 
+
 import com.example.RegisterLoginUser.Config.JwtUtils;
+import com.example.RegisterLoginUser.DTO.PageDTO;
+import com.example.RegisterLoginUser.DTO.UserDto;
+import com.example.RegisterLoginUser.Model.PageToPageDTOMapper;
 import com.example.RegisterLoginUser.Model.RequestUser;
 import com.example.RegisterLoginUser.Model.User;
 import com.example.RegisterLoginUser.Repository.UserRepository;
 import com.example.RegisterLoginUser.Service.UserService;
 import com.sun.xml.messaging.saaj.packaging.mime.MessagingException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+import java.util.*;
+
+@Slf4j
 @RestController
 @RequestMapping("/api/auth")
 public class UserController {
@@ -24,6 +33,9 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private PageToPageDTOMapper pageToPageDTOMapper;
 
     private final UserService userService;
 
@@ -61,4 +73,36 @@ public class UserController {
 
 
 
+    @GetMapping(value = "/me",produces = "application/json")
+    public UserDto getUser(Principal principal) throws Exception {
+        return userService.getdetailUser(principal);
+    }
+
+/*    @GetMapping(value = "/{order}",produces = "application/json")
+    public List<User> getUserSort(@PathVariable String order){
+
+        return userService.getUsers(order);
+
+    }
+
+   @GetMapping(value = "/users")
+    public ResponseEntity<List<User>> getAllUsers(
+            @RequestParam(defaultValue = "1") Integer page,
+            @RequestParam(defaultValue = "10") Integer limit,
+            @RequestParam(defaultValue = "asc") String sort)
+    {
+        List<User> list = userService.getAllUsers(page, limit, sort);
+
+        return new ResponseEntity<List<User>>(list, new HttpHeaders(), HttpStatus.OK);
+    }
+
+
+    @GetMapping("/users")
+    public PageDTO<User> getUserPage(User pageSettings) {
+
+        log.info(
+                "Request for plant page received with data : " + pageSettings);
+
+        return pageToPageDTOMapper.pageToPageDTO(userService.getUserPage(pageSettings));
+    }*/
 }
